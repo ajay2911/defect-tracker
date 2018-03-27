@@ -3,7 +3,7 @@ import createReactClass from 'create-react-class';
 const Header = createReactClass({
     render(){
         return (
-            <div>{"This is Header"}</div>
+            <div>{"This is Header"}<br/><br/><br/></div>
         );
     }
 });

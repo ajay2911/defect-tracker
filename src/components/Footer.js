@@ -3,7 +3,7 @@ import createReactClass from 'create-react-class';
 const Footer = createReactClass({
     render(){
         return (
-            <div>{"This is Footer"}</div>
+            <div><br/><br/><br/>{"This is Footer"}</div>
         );
     }
 });

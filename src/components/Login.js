@@ -1,17 +1,20 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-
+import DataStore from './DataStore.js';
+import * as ActionList from './ActionList.js';
 export default class Login extends React.Component {
 
     constructor(props){
         super(props);
         this.state={
             username:'',
-            password:''
+            password:'',
+            users: ''
         };
 
         this.handleAuthentication=this.handleAuthentication.bind(this);
         this.onChange=this.onChange.bind(this);
+        this.getUserData = this.getUserData.bind(this);
     }
 
     onChange(event){
@@ -20,10 +23,31 @@ export default class Login extends React.Component {
         });
     }
 
+    getUserData(){
+        console.log("Here: "+DataStore.getUserData());
+        this.setState({
+            users: "str"
+        });
+        this.state.users = DataStore.getUserData();
+
+    }
+
+    componentDidMount(){
+    }
+
+    componentWillMount(){
+        DataStore.on("change", this.getUserData);
+    }
+
+    componentWillUnmount() {
+        DataStore.removeListener("change", this.getUserData);
+      }
+
     handleAuthentication(event){
         event.preventDefault();
-        console.log(this.state.username+" - "+this.state.password);
-        this.props.history.push('/landingpage');
+        ActionList.getUserData();      
+        // this.props.history.push('/landingpage');
+        console.log("Username: "+this.state.users);
     }
 
     render(){
