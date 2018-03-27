@@ -27,8 +27,9 @@ export default class Login extends React.Component {
         console.log("Here: "+DataStore.getUserData());
         this.setState({
             users: "str"
+        }, function(){
+            console.log("Username1: "+this.state.users);
         });
-        this.state.users = DataStore.getUserData();
 
     }
 
@@ -47,7 +48,11 @@ export default class Login extends React.Component {
         event.preventDefault();
         ActionList.getUserData();      
         // this.props.history.push('/landingpage');
-        console.log("Username: "+this.state.users);
+        console.log("Username2: "+this.state.users);
+    }
+
+    componentDidUpdate(){
+        console.log("Username2: "+this.state.users);
     }
 
     render(){
